@@ -1,7 +1,9 @@
 import { ImageEventMessage, MessageEvent } from '@line/bot-sdk'
+import { text } from 'stream/consumers'
 
 import { lineClient } from '~/clients/line.client'
 import { getMessageContentWithBuffer } from '~/domains/line.domain'
+import { minusUserPoint } from '~/domains/point.domain'
 import { getUserByUserId } from '~/domains/user.domain'
 import { imageToText } from '~/domains/vision.domain'
 import { makeReplyMessage } from '~/utils/line.util'
@@ -23,6 +25,7 @@ export const messageImageHandler = async (event: MessageEvent): Promise<void> =>
     } else {
       text = text.substring(0, 5000)
       await lineClient.replyMessage(event.replyToken, makeReplyMessage(text))
+      await minusUserPoint(userId, 1)
     }
   } catch (err) {
     errorLogger(err)
