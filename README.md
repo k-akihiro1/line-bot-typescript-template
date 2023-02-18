@@ -23,3 +23,8 @@ firebase deploy
 or
 firebase deploy --only functions:lineBot
 ```
+本番用
+https://asia-northeast1-lac-test-2e502.cloudfunctions.net/lineBot
+
+テスト用
+https://ce41-114-150-114-18.jp.ngrok.io/lac-test-2e502/asia-northeast1/lineBot
