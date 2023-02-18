@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-
 import { signatureMiddleware } from './middleware/signature.middleware'
+
 import { paymentIntentSucceededHandler } from './payment_intent.succeeded'
 
 export const stripeWebhookHandlers = async (req: Request, res: Response) => {
@@ -13,6 +13,8 @@ export const stripeWebhookHandlers = async (req: Request, res: Response) => {
       case 'customer.subscription.deleted':
         break
       case 'payment_intent.succeeded':
+        // @ts-ignore
+        await paymentIntentSucceededHandler({ customerId: event.data.object.customer })
         break
     }
 

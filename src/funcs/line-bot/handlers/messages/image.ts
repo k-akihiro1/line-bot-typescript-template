@@ -22,7 +22,7 @@ export const messageImageHandler = async (event: MessageEvent): Promise<void> =>
     const stripeCustomerId = await getStripeCustomerIdByUserId(userId)
     const { url } = await getStripeCheckoutURL({
       stripeCustomer: stripeCustomerId,
-      priceId: 'price_1Mc81lJFOEpiCtQrTR7XEtSz',
+      priceId: 'price_1Mcmt8BWe3hjmY1vsrPbG8hc',
       mode: 'payment'
     })
     await lineClient.replyMessage(
