@@ -1,28 +1,24 @@
-import express from 'express'
-import { region, RuntimeOptions } from 'firebase-functions'
+import { Request, Response } from 'express'
 
-import { stripeWebhookHandlers } from './webhook'
+import { signatureMiddleware } from './middleware/signature.middleware'
+import { paymentIntentSucceededHandler } from './payment_intent.succeeded'
 
-const app = express()
+export const stripeWebhookHandlers = async (req: Request, res: Response) => {
+  try {
+    const event = signatureMiddleware(req)
 
-// -----------
-// config
+    switch (event.type) {
+      case 'customer.subscription.updated':
+        break
+      case 'customer.subscription.deleted':
+        break
+      case 'payment_intent.succeeded':
+        break
+    }
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
-// -----------
-// router
-
-app.post('/', stripeWebhookHandlers)
-
-// *************
-// functions設定
-// *************
-
-const runtimeOpts: RuntimeOptions = {
-  timeoutSeconds: 540,
-  memory: '512MB'
+    res.status(200).send('success').end()
+  } catch (err) {
+    console.error(err)
+    res.status(500).send('error').end()
+  }
 }
-
-module.exports = region('asia-northeast1').runWith(runtimeOpts).https.onRequest(app)
