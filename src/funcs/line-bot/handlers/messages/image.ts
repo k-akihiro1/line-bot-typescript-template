@@ -10,7 +10,9 @@ import { msgNotText } from '../../notice-messages/other'
 
 export const messageImageHandler = async (event: MessageEvent): Promise<void> => {
   try {
+    const userId = String(event.source.userId)
     const { id: messageId } = event.message as ImageEventMessage
+    const user = await getUserByUserId(userId)
 
     const imageBuffer = await getMessageContentWithBuffer(messageId)
     let text = await imageToText(imageBuffer)
