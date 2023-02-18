@@ -9,7 +9,7 @@ import { messageTextHandler } from './text'
 export const messagesHandler = async (event: MessageEvent): Promise<void> => {
   try {
     switch (event.message.type) {
-      case 'text':
+      case 'image':
         return await messageTextHandler(event)
       default:
         await lineClient.replyMessage(event.replyToken, msgOther)
