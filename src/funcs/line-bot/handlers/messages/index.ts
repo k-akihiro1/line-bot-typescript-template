@@ -4,13 +4,13 @@ import { lineClient } from '~/clients/line.client'
 import { errorLogger } from '~/utils/util'
 import { msgOther } from '~lineBot/notice-messages/other'
 
-import { messageTextHandler } from './text'
+import { messageImageHandler } from './image'
 
 export const messagesHandler = async (event: MessageEvent): Promise<void> => {
   try {
     switch (event.message.type) {
       case 'image':
-        return await messageTextHandler(event)
+        return await messageImageHandler(event)
       default:
         await lineClient.replyMessage(event.replyToken, msgOther)
     }
