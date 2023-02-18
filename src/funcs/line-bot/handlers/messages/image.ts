@@ -2,6 +2,7 @@ import { ImageEventMessage, MessageEvent } from '@line/bot-sdk'
 
 import { lineClient } from '~/clients/line.client'
 import { getMessageContentWithBuffer } from '~/domains/line.domain'
+import { getUserByUserId } from '~/domains/user.domain'
 import { imageToText } from '~/domains/vision.domain'
 import { makeReplyMessage } from '~/utils/line.util'
 import { errorLogger } from '~/utils/util'
