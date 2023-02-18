@@ -29,4 +29,4 @@ https://asia-northeast1-lac-test-2e502.cloudfunctions.net/lineBot
 テスト用
 (無課金)https://ce41-114-150-114-18.jp.ngrok.io/lac-test-2e502/asia-northeast1/lineBot
 
-https://fe8d651ae78e.jp.ngrok.io/lac-test-2e502/asia-northeast1/lineBot
+https://d0ae75c849b3.jp.ngrok.io/lac-test-2e502/asia-northeast1/lineBot
