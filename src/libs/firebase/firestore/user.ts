@@ -30,3 +30,10 @@ export const updateUserDb = async (userId: string, user: Partial<User>): Promise
 export const deleteUserDb = async (userId: string): Promise<void> => {
   await usersRef.doc(userId).delete()
 }
+
+export const getUsersByIsActive = async (isActive: boolean): Promise<User[]> => {
+  const snapshots = await usersRef.where('isActive', '==', isActive).get()
+  return snapshots.docs.map((doc) => {
+    return { id: doc.id, ...doc.data() } as User
+  })
+}
